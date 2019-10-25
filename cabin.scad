@@ -159,6 +159,14 @@ translate([0,global_depth - sec_timber_h ,wall_height2 + main_timber_h]) {
     ]);
 }
 
+translate([0, global_depth - sec_timber_h, wall_height2 + main_timber_h + sec_timber_w]) {
+    cube([
+        global_width,         
+        sec_timber_w,
+        sec_timber_h
+    ]);
+}
+
 
 //short wall
 for (i = [1:6]){
@@ -173,11 +181,19 @@ for (i = [1:6]){
 }
 
 
-translate([0, 0, wall_height1 + main_timber_h]) {
+translate([0, 0, wall_height1 + main_timber_h ]) {
     cube([
         global_width, 
         sec_timber_h, 
         sec_timber_w
+    ]);
+}
+
+translate([0, 0, wall_height1 + main_timber_h  + sec_timber_w]) {
+    cube([
+        global_width,         
+        sec_timber_w,
+        sec_timber_h
     ]);
 }
 
@@ -229,18 +245,45 @@ translate([global_width - main_timber_w - log_place_width, 0 ,wall_height1 + mai
     ]);
 }
 
-//roof
+translate([0,0,170]) {
+    rotate([0, 42, 0]) {
+        cube([150, 25, 3000]);
+    }
+}
 
+//roof
 for (i = [0:9]){    
     x = balk_step * i + roof_timber_w * i;
     translate([x, -800, 2180]){
         rotate([15.5,0,0]) {
-        cube([
-            roof_timber_w, 
-            5000, 
-            roof_timber_h
-        ]);
-    }
+            cube([
+                roof_timber_w, 
+                5000, 
+                roof_timber_h
+            ]);
+        }
+    }   
 }
-   
+
+//obreshetka
+
+for (i = [0:9]){    
+    x = balk_step * i + roof_timber_w * i;
+    translate([x, -800, 2230]){
+        rotate([15.5,0,0]) {
+            cube([
+                50, 
+                5000, 
+                50
+            ]);
+        }
+    }   
+}
+
+rotate([15.5,0,0]) {
+    for (i = [0:9]){  
+   translate([0, (i*400 + 120 * i), 2530]){
+    cube([6000, 120, 22]);
+   } 
+   }
 }
