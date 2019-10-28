@@ -8,7 +8,7 @@ main_timber_h = 150;
 sec_timber_w = 50;
 sec_timber_h = 150;
 
-roof_timber_w = 100;
+roof_timber_w = 50;
 roof_timber_h = 150; 
 
 wall_height1 = 2200;
@@ -140,8 +140,42 @@ translate([global_width - main_timber_w, global_depth - main_timber_w,main_timbe
 
 
 //tall wall
-for (i = [1:6]){
+translate([balk_step + main_timber_w, global_depth - main_timber_w,main_timber_h]) {
+    cube([
+        main_timber_w, 
+        main_timber_h,
+        wall_height2
+    ]);
+}
+
+translate([balk_step + 2*main_timber_w+900, global_depth - main_timber_w,main_timber_h]) {
+    cube([
+        main_timber_w, 
+        main_timber_h,
+        wall_height2
+    ]);
+}
+translate([2*balk_step + 3*main_timber_w+900, global_depth - main_timber_w,main_timber_h]) {
+    cube([
+        main_timber_w, 
+        main_timber_h,
+        wall_height2
+    ]);
+}
+
+translate([2*balk_step + 4*main_timber_w+900+1250, global_depth - main_timber_w,main_timber_h]) {
+    cube([
+        main_timber_w, 
+        main_timber_h,
+        wall_height2
+    ]);
+}
+
+/*for (i = [3:6]){
     x = (i*balk_step + (i-1)*sec_timber_w + main_timber_w);
+    if (i == 2) {
+        x = 900 + balk_step + sec_timber_h;
+    }
     translate([x, global_depth - sec_timber_h, main_timber_h]){
         cube([
             sec_timber_w,
@@ -149,7 +183,7 @@ for (i = [1:6]){
             wall_height2
         ]);
     }
-}
+}*/
 
 translate([0,global_depth - sec_timber_h ,wall_height2 + main_timber_h]) {
     cube([
@@ -245,8 +279,16 @@ translate([global_width - main_timber_w - log_place_width, 0 ,wall_height1 + mai
     ]);
 }
 
+//ukos1
 translate([0,0,170]) {
     rotate([0, 42, 0]) {
+        cube([150, 25, 3000]);
+    }
+}
+
+//ukos2
+translate([4600,0,70]) {
+    rotate([0, -42, 0]) {
         cube([150, 25, 3000]);
     }
 }
@@ -269,10 +311,10 @@ for (i = [0:9]){
 
 for (i = [0:9]){    
     x = balk_step * i + roof_timber_w * i;
-    translate([x, -800, 2230]){
+    translate([x, -800, 2350]){
         rotate([15.5,0,0]) {
             cube([
-                50, 
+                70, 
                 5000, 
                 50
             ]);
@@ -282,8 +324,8 @@ for (i = [0:9]){
 
 rotate([15.5,0,0]) {
     for (i = [0:9]){  
-   translate([0, (i*400 + 120 * i), 2530]){
-    cube([6000, 120, 22]);
+   translate([-500, (i*400 + 120 * i), 2530]){
+    cube([7000, 120, 22]);
    } 
    }
 }
